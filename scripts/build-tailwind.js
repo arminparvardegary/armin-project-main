@@ -21,17 +21,17 @@ async function build() {
 
         const css = fs.readFileSync(inputPath, 'utf8');
 
-            // Load the Tailwind config object so safelist and other options are applied.
-            const tailwindConfigPath = path.join(projectRoot, 'tailwind.config.cjs');
-            let tailwindConfig = {};
-            if (fs.existsSync(tailwindConfigPath)) {
-                tailwindConfig = require(tailwindConfigPath);
-            }
+        // Load the Tailwind config object so safelist and other options are applied.
+        const tailwindConfigPath = path.join(projectRoot, 'tailwind.config.cjs');
+        let tailwindConfig = {};
+        if (fs.existsSync(tailwindConfigPath)) {
+            tailwindConfig = require(tailwindConfigPath);
+        }
 
-            const result = await postcss([
-                tailwind(tailwindConfig),
-                autoprefixer,
-            ]).process(css, { from: inputPath, to: outPath });
+        const result = await postcss([
+            tailwind(tailwindConfig),
+            autoprefixer,
+        ]).process(css, { from: inputPath, to: outPath });
 
         fs.writeFileSync(outPath, result.css, 'utf8');
         if (result.map) fs.writeFileSync(outPath + '.map', result.map.toString());
