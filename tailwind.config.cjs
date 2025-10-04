@@ -7,10 +7,10 @@ module.exports = {
     // simple explicit ones as a fallback
     'bg-white',
     'text-white',
-  // patterns: bg-*, text-*, hover:bg-*
-  { pattern: /^bg-/ },
-  { pattern: /^text-/ },
-  { pattern: /^hover:bg-/ },
+    // patterns: bg-*, text-*, hover:bg-*
+    { pattern: /^bg-/ },
+    { pattern: /^text-/ },
+    { pattern: /^hover:bg-/ },
   ],
   theme: {
     extend: {},
