@@ -7,6 +7,13 @@ module.exports = {
     // simple explicit ones as a fallback
     'bg-white',
     'text-white',
+    // explicit color utilities used in markup
+    'bg-gray-50',
+    'bg-pink-500',
+    'hover:bg-pink-600',
+    'bg-sky-500',
+    'text-sky-500',
+    'text-blue-500',
     // patterns: bg-*, text-*, hover:bg-*
     { pattern: /^bg-/ },
     { pattern: /^text-/ },

@@ -281,6 +281,26 @@
     font-weight: 600;
   }
 }
+@layer utilities {
+  .bg-gray-50 {
+    background-color: #F9FAFB;
+  }
+  .bg-pink-500 {
+    background-color: #EC4899;
+  }
+  .hover\:bg-pink-600:hover {
+    background-color: #DB2777;
+  }
+  .bg-sky-500 {
+    background-color: #0EA5E9;
+  }
+  .text-sky-500 {
+    color: #0EA5E9;
+  }
+  .text-blue-500 {
+    color: #3B82F6;
+  }
+}
 @property --tw-rotate-x {
   syntax: "*";
   inherits: false;
