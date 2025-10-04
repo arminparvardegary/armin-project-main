@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
-  "build": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --minify"
+    "dev": "node ./scripts/build-tailwind.js --watch",
+    "build": "node ./scripts/build-tailwind.js"
   },
+  "postinstall": "echo 'If you experience issues with the Tailwind CLI, ensure Node and npm are up to date and run npm install'",
   "devDependencies": {
-    "tailwindcss": "latest",
-    "postcss": "^8.4.0",
-    "autoprefixer": "^10.4.0"
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "latest"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.14"
   }
 }
