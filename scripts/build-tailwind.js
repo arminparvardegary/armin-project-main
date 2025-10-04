@@ -29,38 +29,38 @@ async function build() {
         fs.writeFileSync(outPath, result.css, 'utf8');
         if (result.map) fs.writeFileSync(outPath + '.map', result.map.toString());
 
-                console.log('Built', outPath);
+        console.log('Built', outPath);
 
-                // Create a public/ directory for Vercel and copy necessary files
-                const publicDir = path.join(projectRoot, 'public');
-                if (!fs.existsSync(publicDir)) fs.mkdirSync(publicDir, { recursive: true });
+        // Create a public/ directory for Vercel and copy necessary files
+        const publicDir = path.join(projectRoot, 'public');
+        if (!fs.existsSync(publicDir)) fs.mkdirSync(publicDir, { recursive: true });
 
-                // Copy index.html
-                const indexSrc = path.join(projectRoot, 'index.html');
-                const indexDest = path.join(publicDir, 'index.html');
-                if (fs.existsSync(indexSrc)) fs.copyFileSync(indexSrc, indexDest);
+        // Copy index.html
+        const indexSrc = path.join(projectRoot, 'index.html');
+        const indexDest = path.join(publicDir, 'index.html');
+        if (fs.existsSync(indexSrc)) fs.copyFileSync(indexSrc, indexDest);
 
-                // Copy dist/output.css into public/dist/output.css
-                const publicDist = path.join(publicDir, 'dist');
-                if (!fs.existsSync(publicDist)) fs.mkdirSync(publicDist, { recursive: true });
-                fs.copyFileSync(outPath, path.join(publicDist, 'output.css'));
+        // Copy dist/output.css into public/dist/output.css
+        const publicDist = path.join(publicDir, 'dist');
+        if (!fs.existsSync(publicDist)) fs.mkdirSync(publicDist, { recursive: true });
+        fs.copyFileSync(outPath, path.join(publicDist, 'output.css'));
 
-                // Copy top-level image assets (.png, .jpg, .jpeg, .svg, .webp) into public/
-                const files = fs.readdirSync(projectRoot);
-                const assetExt = /\.(png|jpe?g|svg|webp)$/i;
-                for (const f of files) {
-                    if (assetExt.test(f)) {
-                        const src = path.join(projectRoot, f);
-                        const dest = path.join(publicDir, f);
-                        try {
-                            fs.copyFileSync(src, dest);
-                        } catch (e) {
-                            // ignore copy errors for non-files
-                        }
-                    }
+        // Copy top-level image assets (.png, .jpg, .jpeg, .svg, .webp) into public/
+        const files = fs.readdirSync(projectRoot);
+        const assetExt = /\.(png|jpe?g|svg|webp)$/i;
+        for (const f of files) {
+            if (assetExt.test(f)) {
+                const src = path.join(projectRoot, f);
+                const dest = path.join(publicDir, f);
+                try {
+                    fs.copyFileSync(src, dest);
+                } catch (e) {
+                    // ignore copy errors for non-files
                 }
+            }
+        }
 
-                console.log('Copied build output and assets to', publicDir);
+        console.log('Copied build output and assets to', publicDir);
     } catch (err) {
         console.error(err);
         process.exit(1);
